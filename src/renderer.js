@@ -11,7 +11,7 @@ class Renderer {
     const { timeout, waitUntil, credentials, emulateMedia } = options
     const page = await this.browser.newPage()
     if (emulateMedia) {
-      await page.emulateMedia(emulateMedia);
+      await page.emulateMedia(emulateMedia)
     }
 
     if (credentials) {
@@ -98,7 +98,9 @@ class Renderer {
 
 async function create(options = {}) {
   const browser = await puppeteer.launch(
-    Object.assign({args: ['--no-sandbox']}, options, {executablePath: '/usr/bin/chromium-browser'})
+    Object.assign({ args: ['--no-sandbox'] }, options, {
+      executablePath: process.env.CHROME_PATH ? process.env.CHROME_PATH : null,
+    }),
   )
   return new Renderer(browser)
 }

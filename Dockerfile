@@ -15,6 +15,7 @@ RUN apk add --no-cache \
 
 # Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+ENV CHROME_PATH /usr/bin/chromium-browser
 
 COPY . /app
 RUN cd /app && npm install --quiet && rm -rf /var/cache/apk/* /root/.node-gyp /usr/share/man /tmp/* \
